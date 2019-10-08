@@ -5,3 +5,4 @@ set(CMAKE_C_STANDARD 99)
 
 add_executable(c002 main.c)
 add_executable(MainFuncArgs MainFuncArgs.c)
+add_executable(functions functions.c)
