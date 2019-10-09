@@ -67,9 +67,10 @@ int main(){
     int b = 10;
     int * ptr_a = &b;
     int ** ptr_ptr = &ptr_a;
-    printf("&b:%d \n", &b); //&b:1484391856
-    printf("ptr_a 存储内容：%d； =>ptr_a 解引用后的值：%d； ->存放 ptr_a 变量的地址 %d； \n", ptr_a, *ptr_a, &ptr_a); //ptr_a 存储内容：1484391856； =>ptr_a 解引用后的值：10； ->存放 ptr_a 变量的地址 1484391848；
-    printf("ptr_ptr * : 指针的指针：%d； => 指针：%d； -> 值：%d； \n", ptr_ptr, *ptr_ptr,**ptr_ptr);//ptr_ptr * : 指针的指针：1484391848； => 指针：1484391856； -> 值：10；
+    printf("&b 16 hex : %p \n", &b); //&b:1484391856
+    printf("ptr_a 存储内容：%p； =>ptr_a 解引用后的值：%d； ->存放 ptr_a 变量的地址 %p； \n", ptr_a, *ptr_a, &ptr_a); //ptr_a 存储内容：0x7fff581105b0； =>ptr_a 解引用后的值：10； ->存放 ptr_a 变量的地址 0x7fff581105a8；
+
+    printf("ptr_ptr * : 指针的指针：%p； => 指针：%p； -> 值：%p； \n", ptr_ptr, *ptr_ptr,**ptr_ptr);//ptr_ptr * : 指针的指针：0x7fff581105a8； => 指针：0x7fff581105b0； -> 值：0xa；
 
 
     printf("=========================\n\n");
