@@ -39,14 +39,14 @@ int main(){
     printf("&intP[1] * : %d \n", &intP[1]); //intP * : 112
     printf("intP[1] * : %d \n", intP[1]); //intP * : 112
     printf("&intP[1] * : %d \n", &intP[1]); //intP * : 1413490628 // +4
-
+    free(intP);
     printf("=========================\n\n");
 
     struct Student s = {  18,175};
     struct Student * p = &s;
     printf("struct p * : %d \n", p); //struct p * : 1343915472
-    printf("struct p * : %d \n", *p); //struct p * : 18
-//    printf("struct p * : %d \n", p); //struct p * : 18
+    printf("struct *p * : %d \n", *p); //struct p * : 18
+    printf("struct &p * : %d \n", (&p)); //struct p * : 18
     printf("struct p->age * : %d \n", p->age); //struct p * : 18
 
     printf("=========================\n\n");
@@ -59,7 +59,23 @@ int main(){
     char * str1 = (char *)ptr;
     printf("*str1111 * : %s \n", str1); //*str1111 * : hello
 
+    printf("=========================\n\n");
 
-    free(intP);
+    char ch = "a";
+    printf("ch : %d\n", sizeof(ch)); //ch : 1
+
+    int b = 10;
+    int * ptr_a = &b;
+    int ** ptr_ptr = &ptr_a;
+    printf("&b:%d \n", &b); //&b:1484391856
+    printf("ptr_a 存储内容：%d； =>ptr_a 解引用后的值：%d； ->存放 ptr_a 变量的地址 %d； \n", ptr_a, *ptr_a, &ptr_a); //ptr_a 存储内容：1484391856； =>ptr_a 解引用后的值：10； ->存放 ptr_a 变量的地址 1484391848；
+    printf("ptr_ptr * : 指针的指针：%d； => 指针：%d； -> 值：%d； \n", ptr_ptr, *ptr_ptr,**ptr_ptr);//ptr_ptr * : 指针的指针：1484391848； => 指针：1484391856； -> 值：10；
+
+
+    printf("=========================\n\n");
+
+
+
+
     return 0;
 }
