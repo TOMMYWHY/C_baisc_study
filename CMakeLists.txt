@@ -3,6 +3,12 @@ project(c002 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(c002 main.c)
+add_executable(c002 main.c multFiles/includes/a.h)
 add_executable(MainFuncArgs MainFuncArgs.c)
 add_executable(functions functions.c)
+add_executable(Define Define.c)
+add_executable(multFiles multFiles/main.c multFiles/includes/hello.h multFiles/includes/a.h)
+
+add_executable(pointer pointer/main.c)
+add_executable(funcPointer funcPointer/main.c)
+
