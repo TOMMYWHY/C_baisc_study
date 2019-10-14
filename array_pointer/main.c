@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+
 #if 0
 int main (){
 
@@ -48,7 +49,7 @@ int main(){
 
 #endif
 
-#if 1
+#if 0
 
 char * get_str(){
     char str[] = "tommywhy"; // 将 全局 string 以 char 的形式 一一复制到 stack 的 str[] 中
@@ -64,6 +65,22 @@ int main (){
     printf("p => : %s \n", p);//
     printf("&p => : %d \n", &p);//
     return 0;
+
+}
+
+#endif
+
+#if 1
+/*
+ *   * 为左值时： 给内存赋值，写操作
+ *   * 为右值时： 取内存值，  读操作
+ */
+int main(){
+    int a = 10;
+    int *p1 = NULL;
+    p1 = &a;
+    int b  = *p1; // 读取 内存 //10
+    *p1 = 22; // 写 内存 //22
 
 }
 
