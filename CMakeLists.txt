@@ -10,5 +10,8 @@ add_executable(Define Define.c)
 add_executable(multFiles multFiles/main.c multFiles/includes/hello.h multFiles/includes/a.h)
 
 add_executable(pointer pointer/main.c)
+add_executable(pointer_array pointer/pointer_array.c)
+add_executable(pointer_test pointer/pointer_test.c)
 add_executable(funcPointer funcPointer/main.c)
+add_executable(array_pointer array_pointer/main.c)
 
