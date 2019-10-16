@@ -70,7 +70,7 @@ int main (){
 
 #endif
 
-#if 1
+#if 0
 /*
  *   * 为左值时： 给内存赋值，写操作
  *   * 为右值时： 取内存值，  读操作
@@ -81,6 +81,27 @@ int main(){
     p1 = &a;
     int b  = *p1; // 读取 内存 //10
     *p1 = 22; // 写 内存 //22
+
+}
+
+#endif
+
+
+#if 1
+int main (){
+
+    char * buf1 = "asdqwe"; // 指针指向常量区
+    //buf1[1] = 'p'// error
+    char  buf2[] = "asdqwe"; // 将常量区字符串，以字符形式负值给 栈区数组
+    printf("&buf1 => : %d \n", &buf1);//&buf1 => : 1352996336 //栈区
+    printf("buf1 => : %d \n", buf1);//buf1 => : 253423466 // 常量区
+
+    printf("&buf2 => : %d \n", &buf2);//&buf2 => : 1352996329 //栈
+    printf("buf2 => : %d \n", buf2);//buf2 => : 1352996329 //栈
+
+
+
+    return 0;
 
 }
 
