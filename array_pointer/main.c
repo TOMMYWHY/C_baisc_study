@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+#include <stdlib.h>
 #if 0
 int main (){
 
@@ -87,7 +87,7 @@ int main(){
 #endif
 
 
-#if 1
+#if 0
 int main (){
 
     char * buf1 = "asdqwe"; // 指针指向常量区
@@ -99,10 +99,92 @@ int main (){
     printf("&buf2 => : %d \n", &buf2);//&buf2 => : 1352996329 //栈
     printf("buf2 => : %d \n", buf2);//buf2 => : 1352996329 //栈
 
+printf("================================ \n");
 
+    int a = 10;
+    int *p = &a;
+    int **q = &p;
+
+    int ****t = NULL;
+    int * ****t2 = &t;
+
+    printf("p => : %d \n", p);//p => : 1428334052
+    printf("*p => : %d \n", *p);//*p => : 10
+    printf("&p => : %d \n", &p);//&p => : 1428334040
+    printf("q => : %d \n", q);//q => : 1428334040
+    printf("*q => : %d \n", *q);//*q => : 1428334052
+    printf("**q => : %d \n", **q);//**q => : 10
+    printf("&*q => : %d \n", &*q);//&*q => : 1428334040
+
+    printf("================================ \n");
 
     return 0;
 
+}
+
+#endif
+
+
+#if 1
+void fun(int * p){
+    p = 0xaabb;
+    printf("fun: p => %p\n", p); //fun: p => 0xaabb
+}
+void fun2(int **p){
+    *p = 0xeeff;
+    printf("fun2: p => %p\n", p); //fun2: p => 0x7fff537175f0
+}
+int main(){
+    int * ptr = 0x1122;
+    printf("ptr => : %p \n", ptr); //ptr => : 0x1122
+    fun(ptr);//值传递
+    printf("ptr => : %p \n", ptr); //ptr => : 0x1122
+    fun2( &ptr); //地址传递
+    printf("ptr => : %p \n", ptr); //ptr => : 0xeeff
+    return 0;
+}
+#endif
+#if 0
+
+void fun(char *p){
+    strcpy(p, "abcdef");
+}
+void fun2(char *p){
+    if(p == NULL){
+        return;
+    }
+    strcpy(p, "abcdef");
+
+}
+void fun3(char **p,int *len){
+    if(p == NULL){
+        return;
+    }
+    char * temp = (char *)malloc(100);
+    if(temp == NULL){
+        return;
+    }
+    strcpy(temp,"asdqwe");
+    *p = temp;
+    *len = strlen(temp);
+}
+int main() {
+    char buf[100] = {0};
+    fun(buf);
+
+    printf("buf => %s \n", buf);//buf => abcdef
+    char *str = NULL;
+    fun2(str);
+    printf("str => %s \n", str); //str => (null)
+
+    char *p = NULL;
+    int len = 0;
+    printf("&p=> %d \n",&p);
+    fun3(&p,&len);
+    if(p !=NULL){
+        printf("p => %s ,len =%d  \n", p,len); //
+    }
+    return 0;
 }
 
 #endif
