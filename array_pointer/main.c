@@ -125,7 +125,7 @@ printf("================================ \n");
 #endif
 
 
-#if 1
+#if 0
 void fun(int * p){
     p = 0xaabb;
     printf("fun: p => %p\n", p); //fun: p => 0xaabb
@@ -187,4 +187,10 @@ int main() {
     return 0;
 }
 
+#endif
+
+#if 1
+int main(){
+
+}
 #endif

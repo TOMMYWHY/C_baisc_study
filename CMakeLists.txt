@@ -14,4 +14,5 @@ add_executable(pointer_array pointer/pointer_array.c)
 add_executable(pointer_test pointer/pointer_test.c)
 add_executable(funcPointer funcPointer/main.c)
 add_executable(array_pointer array_pointer/main.c)
+add_executable(string string/main.c)
 
