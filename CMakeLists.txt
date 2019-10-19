@@ -16,4 +16,5 @@ add_executable(funcPointer funcPointer/main.c)
 add_executable(array_pointer array_pointer/main.c)
 add_executable(string string/main.c)
 add_executable(const const/main.c)
+add_executable(doublePointer doublePointer/main.c)
 
