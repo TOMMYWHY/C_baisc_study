@@ -17,4 +17,5 @@ add_executable(array_pointer array_pointer/main.c)
 add_executable(string string/main.c)
 add_executable(const const/main.c)
 add_executable(doublePointer doublePointer/main.c)
+add_executable(review review/main.c)
 
