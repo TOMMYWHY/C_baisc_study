@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 #if 0
 int main(){
@@ -119,7 +121,7 @@ int main(){
 #endif
 //*********************************
 
-#if 1
+#if 0
 // 二维数组
 void print_arr_err(int **a, int n){
     printf("print_arr a => %d \n",a);
@@ -140,7 +142,7 @@ int main(){
     printf("a=> %d \n",a);// 首行地址
     printf("a+1=> %d \n",a+1); //+30
     printf("d *a=> %d \n",*a);// 首行地址
-    printf("d *a+1=> %d \n",*a+1);// 首行首元素地址
+    printf("d *a+1=> %d \n",*a+1);// 首行首元素地址 +1
 
     printf("s a=> %s \n",a);
     printf("s *a=> %s \n",*a);
@@ -148,6 +150,71 @@ int main(){
     printf("s a[1]=> %s \n",a[1]);
     int n = sizeof(a)/ sizeof(a[0]);
     print_arr(a,n);
+    return 0;
+}
+#endif
+//*********************************
+#if 1
+// replace substring
+int replaceSubstring(char *src, char **dst, char *sub, char * new_sub){
+    /*
+     * src = "00asd123qwe22222asd9999"
+     * sub = asd
+     * new_sub = abcd
+     */
+    char * start = src;
+    char *p = NULL;
+    char temp [512] = {0};
+    int len = 0;
+    do{
+        p = strstr(start,sub);
+        if(p !=NULL){
+            len = 0;
+            len= p - start;
+            if(len >0){
+                strncat(temp,start, len);
+            }
+            strncat(temp,new_sub,strlen(new_sub));
+            start =  p + strlen(sub);
+
+        } else{
+            strcat(temp,start);
+            break;
+        }
+
+    }while (*start !=0);
+    char *buf = (char *)malloc(strlen(temp)+1);
+    strcpy(buf,temp);
+    * dst = buf;
+    return 0;
+}
+void freeBuf(char * buf){
+    free(buf);
+}
+void freeBuff(char **buf){
+    char *temp = *buf;
+    free(temp);
+    *buf = NULL;
+}
+int main(){
+    char *p = "00asd123qwe22222asd9999";
+    char * buf = NULL;
+    int ret = 0;
+    ret = replaceSubstring(p,&buf,"asd","_");
+    if(ret !=0){
+        printf("replaceSubstring err %d \n", ret);
+        return ret;
+    }
+    printf("p : %s \n",p);
+    printf("buf : %s \n",buf);
+    if(buf !=NULL){
+        free(buf);
+        buf = NULL;
+    }
+
+    /*freeBuf(buf);
+    buf = NULL;*/
+    freeBuff(&buf);
     return 0;
 }
 #endif
