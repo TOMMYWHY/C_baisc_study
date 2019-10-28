@@ -154,7 +154,7 @@ int main(){
 }
 #endif
 //*********************************
-#if 1
+#if 0
 // replace substring
 int replaceSubstring(char *src, char **dst, char *sub, char * new_sub){
     /*
@@ -215,6 +215,101 @@ int main(){
     /*freeBuf(buf);
     buf = NULL;*/
     freeBuff(&buf);
+    return 0;
+}
+#endif
+//*********************************
+#if 0
+
+// spit string
+int spitString(const char *str, char c, char buf[10][30], int *count) {
+    //str = "asd,qwe,zxcvb,1234567,fghj,";
+    const char *start = str;
+    char *p = NULL;
+    int i = 0;
+    do {
+        p = strchr(start,c);
+        if(p !=NULL){
+            strncpy(buf[i],start,p - start);
+            buf[i][p - start] = 0;
+            i++;
+            start = p + 1;
+        } else{
+            strcpy(buf[i],start);
+            i++;
+            break;
+        }
+    } while (*start != 0);
+    * count = i;
+
+    return 0;
+}
+
+int main() {
+    const char *p = "asd,qwe,zxcvb,1234567,fghj";
+    char buf[10][30] = {0};
+    int n = 0;
+    int ret = 0;
+    ret = spitString(p, ',', buf, &n);
+    for (int i = 0; i < n; i++) {
+        printf("%s \n", buf[i]);
+    }
+    return 0;
+}
+
+#endif
+//*********************************
+
+#if 0
+// 数组指针 // 指向一个数组整体的指针
+int main(){
+    int a [10] = {11,22,33,44};
+//    printf("a[1] => %d \n",a[1]);
+//    printf("*(a+1) => %d \n",*(a+1));//与上面等价
+    printf("a: %d; a+1: %d \n",a,a+1); //+4
+    printf("&a: %d; &a+1: %d \n",&a,&a+1); // +4*10
+
+    typedef int A [10];
+    A * p =NULL; // p 是数组指针类型的变量
+//    p = a; //首元素地址
+    p = &a;// 整行地址
+    printf("p: %d; p+1: %d \n",p,p+1); // +10 步长 //夸整个数组
+    for (int i = 0; i < 10; i++) {
+        (*p)[i] = i+1; // a[i] => *p == a // (*p)[] == a[]
+        printf("%d ",(*p)[i]); // +4*10
+    }
+
+    int (*q)[10] = &a; // 数组指针，指向整个&a数组
+    for (int i = 0; i < 10; i++) {
+        (*q)[i] = i+11; //
+        printf("%d ",(*q)[i]);
+    }
+
+    return 0;
+}
+#endif
+//*********************************
+#if 1
+// 二维数组
+int main(){
+    int a[3][10] ={11,22,33,44,55,66,77,88,99,111,2222};
+    printf("a: %d; a+1: %d \n",a,a+1);//+16 // 第一行 //a: 1562379728; a+1: 1562379744
+    printf("&a: %d; &a+1: %d \n",&a,&a+1); //+48 //这个二维
+    printf("a[1]: %d; *(a+1): %d => %d \n",*(a+1),*(a+1)+1,*(*(a+1)+1));// a[1][1]
+    //a[1]: 1562379744; *(a+1): 1562379748 => 66  // 步长为4，第二行首元素单个地址
+    printf("*(a+1): %d; *(a+1)+1: %d \n",*(a+1),*(a+1)+1); //+4 //
+    printf("a[1]: %d; a[1]+1: %d \n",a[1],a[1]+1); //+4 //
+    //a      : 第0行首地址
+    //a+i  : 第 i 行 首元素地址
+    //*(a+i) -> a[i]: 第 i 行 首元素地址 +1 步长为4
+    //*(a+i)+j    -> &a[i][j]: 第 i 行 第 j 列元素地址
+    //*(*(a+i)+j) -> a[i][j]: 第 i 行 第 j 列 值
+    printf("=================== \n");
+    // 二维 数组指针
+    int (*p)[10];
+    p = a;
+    printf("p: %d; p+1: %d \n",p,p+1); //+4 //
+
     return 0;
 }
 #endif
